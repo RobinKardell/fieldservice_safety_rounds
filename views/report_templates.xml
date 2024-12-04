@@ -1,0 +1,27 @@
+<template id="report_safety_round">
+    <t t-call="web.external_layout">
+        <div class="page">
+            <h2>Safety Round Report</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Action Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="doc.safety_round_ids" t-as="round">
+                        <td t-esc="round.item"/>
+                        <td t-esc="round.location"/>
+                        <td t-esc="round.status"/>
+                        <td t-esc="round.action_required"/>
+                        <td t-esc="round.comments"/>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</template>

@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <report
+            id="safety_round_report"
+            model="field.service.task"
+            string="Safety Round Report"
+            report_type="qweb-pdf"
+            file="fieldservice_safety_rounds.report_safety_round"
+            name="fieldservice_safety_rounds.report_safety_round"
+        />
+        
+        <template id="report_safety_round">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Safety Round Report</h2>
+                    <t t-foreach="doc.safety_round_ids" t-as="round">
+                        <h3 t-esc="round.name"/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Action Required</th>
+                                    <th>Comments</th>
+                                    <th>Map URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="round.checks" t-as="check">
+                                    <td t-esc="check.item"/>
+                                    <td t-esc="check.location"/>
+                                    <td t-esc="dict(check._fields['status'].selection).get(check.status)"/>
+                                    <td t-esc="check.action_required"/>
+                                    <td t-esc="check.comments"/>
+                                    <td><a t-att-href="check.map_url" t-esc="check.map_url"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
