@@ -1,6 +1,10 @@
 from odoo import models, fields
 
 class SafetyRound(models.Model):
+    _inherit = 'field.service.task'
+
+    safety_check_done = fields.Boolean(string="Safety Check Done", default=False)
+    
     _name = "field.service.safety.round"
     _description = "Safety Round for Field Service"
 
